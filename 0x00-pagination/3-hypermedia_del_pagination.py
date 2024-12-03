@@ -45,7 +45,7 @@ class Server:
         :return:
         """
         database = self.indexed_dataset()
-        assert index < len(database)
+        assert index is not None and index >= 0 and index <= max(database.keys())
         dataset = []
         next_index: int = index
         for i in range(page_size):
