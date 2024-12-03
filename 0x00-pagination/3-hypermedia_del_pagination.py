@@ -39,22 +39,27 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """
-        :param index:
-        :param page_size:
-        :return:
-        """
-        database = self.indexed_dataset()
-        assert index is not None and index >= 0 and index <= max(database.keys())
-        dataset = []
-        next_index: int = index
-        for i in range(page_size):
-            if index + i in range(len(database.values())):
-                dataset.append(list(database.values())[index + i])
-                next_index = index + i + 1
-        return {
-            "index": index,
-            "data": dataset,
-            "page_size": len(dataset),
-            "next_index": next_index
+        """Retrieves info about a page from a given index and with a
+                specified size.
+                """
+        data = self.indexed_dataset()
+        assert index is not None and index >= 0 and index <= max(data.keys())
+        page_data = []
+        data_count = 0
+        next_index = None
+        start = index if index else 0
+        for i, item in data.items():
+            if i >= start and data_count < page_size:
+                page_data.append(item)
+                data_count += 1
+                continue
+            if data_count == page_size:
+                next_index = i
+                break
+        page_info = {
+            'index': index,
+            'next_index': next_index,
+            'page_size': len(page_data),
+            'data': page_data,
         }
+        return page_info
