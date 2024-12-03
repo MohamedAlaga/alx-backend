@@ -39,6 +39,11 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """
+        :param index:
+        :param page_size:
+        :return:
+        """
         database = self.indexed_dataset()
         assert index < len(database)
         dataset = []
