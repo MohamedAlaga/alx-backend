@@ -55,6 +55,6 @@ class Server:
         return {
             "index": index,
             "data": dataset,
-            "page_size": page_size,
+            "page_size": len(dataset),
             "next_index": next_index
         }
