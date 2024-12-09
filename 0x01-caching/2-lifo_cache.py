@@ -4,6 +4,7 @@
 """
 
 from base_caching import BaseCaching
+from collections import OrderedDict
 
 
 class LIFOCache(BaseCaching):
@@ -23,7 +24,7 @@ class LIFOCache(BaseCaching):
         """
         if (key is not None) and (item is not None):
             self.cache_data[key] = item
-        if len(self.cache_data) > self.MAX_ITEMS:
+        if len(self.cache_data) + 1 > self.MAX_ITEMS:
             last = list(self.cache_data.pop().keys())[-1]
             print("DISCARD: {}".format(last))
             self.cache_data.pop(last)
