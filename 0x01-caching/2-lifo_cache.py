@@ -10,6 +10,7 @@ class LIFOCache(BaseCaching):
     """
     class to implement LIFO caching
     """
+
     def __init__(self):
         """
         constructor
