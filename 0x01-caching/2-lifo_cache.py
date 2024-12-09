@@ -17,6 +17,7 @@ class LIFOCache(BaseCaching):
         constructor
         """
         super().__init__()
+        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """
@@ -24,7 +25,7 @@ class LIFOCache(BaseCaching):
         """
         if (key is not None) and (item is not None):
             self.cache_data[key] = item
-            self.cache_data.move_to_end(key, True)
+            self.cache_data.move_to_end(key,True)
         if len(self.cache_data) + 1 > self.MAX_ITEMS:
             last = list(self.cache_data.keys())[-1]
             print("DISCARD: {}".format(last))
