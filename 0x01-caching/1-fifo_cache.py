@@ -6,7 +6,7 @@
 from base_caching import BaseCaching
 
 
-class FIFOCaching(BaseCaching):
+class FIFOCache(BaseCaching):
     """
     class for FIFO caching
     """
@@ -24,8 +24,8 @@ class FIFOCaching(BaseCaching):
         if (key is not None) and (item is not None):
             self.cache_data[key] = item
         if len(self.cache_data) > self.MAX_ITEMS:
-            print("DISCARD: {}".format(next(iter(self.cache_data.values()))))
-            self.cache_data.pop(self.cache_data.keys()[0])
+            print("DISCARD: {}".format(next(iter(self.cache_data))))
+            self.cache_data.pop(next(iter(self.cache_data)))
 
     def get(self, key):
         """
