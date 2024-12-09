@@ -25,7 +25,7 @@ def get_locale():
     """
     select the best locale from request
     """
-    locale = request.args.get("locale",'').strip()
+    locale = request.args.get("locale", '').strip()
     if locale and locale in Config.LANGUAGES:
         return locale
     return request.accept_languages.best_match(["fr", "en"])
