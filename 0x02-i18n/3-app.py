@@ -2,7 +2,7 @@
 '''Task 2: Get locale from request
 '''
 
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -17,7 +17,6 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
@@ -34,7 +33,7 @@ def index():
     """
     first page
     """
-    return render_template("2-index.html")
+    return render_template("3-index.html")
 
 
 if __name__ == '__main__':
