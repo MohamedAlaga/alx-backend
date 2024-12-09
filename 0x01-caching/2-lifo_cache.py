@@ -23,13 +23,14 @@ class LIFOCache(BaseCaching):
         """
         put item into LIFO cache
         """
-        if (key is not None) and (item is not None):
-            self.cache_data[key] = item
-            self.cache_data.move_to_end(key,True)
+        if (key is None) or (item is None):
+            return
         if len(self.cache_data) + 1 > self.MAX_ITEMS:
             last = list(self.cache_data.keys())[-1]
             print("DISCARD: {}".format(last))
             self.cache_data.pop(last)
+        self.cache_data[key] = item
+        self.cache_data.move_to_end(key, True)
 
     def get(self, key):
         """
